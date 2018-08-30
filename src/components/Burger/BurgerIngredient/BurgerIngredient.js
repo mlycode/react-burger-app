@@ -13,8 +13,8 @@ class BurgerIngredient extends Component {
             case ("bread-top"):
                 ingredient = (
                     <div className={classes.BreadTop}>
-                        <div className={classes.Seed1}></div>
-                        <div className={classes.Seed2}></div>
+                        <div className={classes.Seeds1}></div>
+                        <div className={classes.Seeds2}></div>
                     </div>
                 );
                 break;
@@ -42,4 +42,4 @@ BurgerIngredient.propTypes = {
     type: PropTypes.string.isRequired
 }
 
-export default burgerIngredient;
+export default BurgerIngredient;
