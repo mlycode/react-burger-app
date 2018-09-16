@@ -166,6 +166,7 @@ class ContactData extends Component {
                 config: this.state.orderForm[key]
             });
         }
+        
         let form = (
             <form onSubmit={this.orderHandler}>
                     {formElementsArray.map(formElement => (
@@ -182,6 +183,26 @@ class ContactData extends Component {
                     <Button btnType="Success" disabled={!this.state.formIsValid}>Place Order</Button>
             </form>
         );
+        // let form = (
+        //     <form onSubmit={this.orderHandler}>
+        //         {this.state.orderForm.map((key, i) => {
+        //             const formElement = this.state.orderForm[key];
+        //             return (
+        //                 <Input
+        //                     key={i}
+        //                     elementType={formElement.config.elementType}
+        //                     elementConfig={formElement.config.elementConfig}
+        //                     value={formElement.config.value}
+        //                     invalid={!formElement.config.valid}
+        //                     shouldValidate={formElement.config.validation}
+        //                     touched={formElement.config.touched}
+        //                     changed={(event) => this.inputChangedHandler(event, formElement.id)} 
+        //                 />
+        //             )
+        //         })}
+        //         <Button btnType="Success" disabled={!this.state.formIsValid}>Place Order</Button>
+        //     </form>
+        // );
         if (this.props.loading) {
             form = <Spinner />
         }
