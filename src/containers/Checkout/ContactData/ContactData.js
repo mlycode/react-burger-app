@@ -8,6 +8,7 @@ import axios from "../../../axios-orders";
 import Input from "../../../components/UI/Input/Input";
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../../store/actions/index";
+import { updateObject } from "../../../shared/utility";
 
 class ContactData extends Component {
     state = {
@@ -140,16 +141,14 @@ class ContactData extends Component {
     }
 
     inputChangedHandler = (event, inputIndentifier) => {
-        const updatedOrderForm = {
-            ...this.state.orderForm
-        };
-        const updatedFormElement = {
-            ...updatedOrderForm[inputIndentifier]
-        };
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-        updatedFormElement.touched = true
-        updatedOrderForm[inputIndentifier] = updatedFormElement;
+        const updatedFormElement = updateObject(this.state.orderForm[inputIndentifier], {
+            value: event.target.value,
+            valid: this.checkValidity(event.target.value, this.state.orderForm[inputIndentifier].validation),
+            touched: true
+        }); 
+        const updatedOrderForm = updateObject(this.state.orderForm, {
+            [inputIndentifier]: updatedFormElement
+        });
         
         let formIsValid = true;
         for (let inputIdentifier in updatedOrderForm) {
